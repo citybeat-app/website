@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Delete Account - citybeat</title>
+	<style>
+		@font-face {
+			font-family: Unbounded;
+			font-display: swap;
+			font-style: normal;
+			font-weight: 200 900;
+			src: url(./Unbounded.woff2) format("woff2");
+		}
+
+		@font-face {
+			font-family: 'Josefin Sans';
+			font-style: normal;
+			font-weight: 100 700;
+			font-display: swap;
+			src: url(./JosefinSans.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+		* {
+			font-family: 'Josefin Sans', sans-serif;
+		}
+
+		h1,
+		h2 {
+			font-family: Unbounded, system-ui;
+		}
+
+		h2::before {
+			content: '//';
+		}
+
+		html {
+			color: white;
+			background-color: #1a1414;
+			color-scheme: dark;
+		}
+
+		body {
+			margin: 0;
+			line-height: 1.6;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 2rem;
+		}
+
+		.header {
+			text-align: center;
+			margin-bottom: 3rem;
+		}
+
+		.header h1 {
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+			color: #ff6b6b;
+		}
+
+		.header p {
+			font-size: 1.2rem;
+			color: #ccc;
+		}
+
+		.form-section {
+			background-color: #2a2a2a;
+			padding: 2rem;
+			border-radius: 10px;
+			margin-bottom: 2rem;
+			border: 1px solid #444;
+		}
+
+		.form-group {
+			margin-bottom: 1.5rem;
+		}
+
+		.form-group label {
+			display: block;
+			margin-bottom: 0.5rem;
+			font-weight: 600;
+			color: #fff;
+		}
+
+		.form-group input,
+		.form-group select,
+		.form-group textarea {
+			width: 100%;
+			padding: 0.75rem;
+			border: 2px solid #444;
+			border-radius: 5px;
+			background-color: #1a1414;
+			color: white;
+			font-size: 1rem;
+			box-sizing: border-box;
+		}
+
+		.form-group input:focus,
+		.form-group select:focus,
+		.form-group textarea:focus {
+			outline: none;
+			border-color: #ff6b6b;
+		}
+
+		.form-group textarea {
+			min-height: 100px;
+			resize: vertical;
+		}
+
+		.warning-box {
+			background-color: #53131c;
+			border: 2px solid #ff6b6b;
+			border-radius: 10px;
+			padding: 1.5rem;
+			margin-bottom: 2rem;
+		}
+
+		.warning-box h3 {
+			margin-top: 0;
+			color: #ff6b6b;
+			font-family: Unbounded, system-ui;
+		}
+
+		.warning-box ul {
+			margin: 1rem 0;
+		}
+
+		.warning-box li {
+			margin-bottom: 0.5rem;
+		}
+
+		.checkbox-group {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.75rem;
+			margin: 1.5rem 0;
+		}
+
+		.checkbox-group input[type="checkbox"] {
+			width: auto;
+			margin-top: 0.25rem;
+		}
+
+		.checkbox-group label {
+			flex: 1;
+			margin-bottom: 0;
+		}
+
+		.button-group {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+			margin-top: 2rem;
+		}
+
+		.btn {
+			padding: 0.75rem 2rem;
+			border: none;
+			border-radius: 5px;
+			font-size: 1rem;
+			font-weight: 600;
+			cursor: pointer;
+			text-decoration: none;
+			display: inline-block;
+			text-align: center;
+			transition: all 0.3s ease;
+		}
+
+		.btn-danger {
+			background-color: #ff6b6b;
+			color: white;
+		}
+
+		.btn-danger:hover {
+			background-color: #ff5252;
+		}
+
+		.btn-secondary {
+			background-color: #666;
+			color: white;
+		}
+
+		.btn-secondary:hover {
+			background-color: #777;
+		}
+
+		.back-link {
+			display: inline-block;
+			margin-bottom: 2rem;
+			color: #ccc;
+			text-decoration: none;
+		}
+
+		.back-link:hover {
+			color: white;
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.container {
+				padding: 1rem;
+			}
+
+			.header h1 {
+				font-size: 2rem;
+			}
+
+			.button-group {
+				flex-direction: column;
+			}
+
+			.btn {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<a href="index.html" class="back-link">← Back to citybeat</a>
+		
+		<div class="header">
+			<h1>Delete Your Account</h1>
+			<p>We're sorry to see you go. Please take a moment to review the information below.</p>
+		</div>
+
+		<div class="warning-box">
+			<h3>⚠️ Important Information</h3>
+			<p>Deleting your account is <strong>permanent and irreversible</strong>. This action will:</p>
+			<ul>
+				<li>Permanently delete your profile and all associated data</li>
+				<li>Remove all your saved places and favorites</li>
+				<li>Delete your event history and check-ins</li>
+				<li>Remove you from all friend connections</li>
+				<li>Cancel any active subscriptions or premium features</li>
+			</ul>
+			<p><strong>This action cannot be undone.</strong></p>
+		</div>
+
+		<form id="deleteAccountForm" class="form-section">
+			<h2>Account Deletion Request</h2>
+			
+			<div class="form-group">
+				<label for="email">Email Address</label>
+				<input type="email" id="email" name="email" required 
+					   placeholder="Enter the email associated with your account">
+			</div>
+
+			<div class="form-group">
+				<label for="username">Username (if applicable)</label>
+				<input type="text" id="username" name="username" 
+					   placeholder="Enter your username">
+			</div>
+
+			<div class="form-group">
+				<label for="reason">Reason for Deletion (Optional)</label>
+				<select id="reason" name="reason">
+					<option value="">Select a reason...</option>
+					<option value="privacy">Privacy concerns</option>
+					<option value="not-useful">App not useful</option>
+					<option value="too-many-notifications">Too many notifications</option>
+					<option value="technical-issues">Technical issues</option>
+					<option value="found-alternative">Found an alternative</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="feedback">Additional Feedback (Optional)</label>
+				<textarea id="feedback" name="feedback" 
+						  placeholder="Help us improve by sharing your experience..."></textarea>
+			</div>
+
+			<div class="checkbox-group">
+				<input type="checkbox" id="dataExport" name="dataExport">
+				<label for="dataExport">
+					I would like to request a copy of my data before deletion 
+					(this may delay the deletion process by up to 30 days)
+				</label>
+			</div>
+
+			<div class="checkbox-group">
+				<input type="checkbox" id="confirmation" name="confirmation" required>
+				<label for="confirmation">
+					<strong>I understand that this action is permanent and irreversible. 
+					I want to permanently delete my citybeat account and all associated data.</strong>
+				</label>
+			</div>
+
+			<div class="button-group">
+				<a href="index.html" class="btn btn-secondary">Cancel</a>
+				<button type="submit" class="btn btn-danger">Delete My Account</button>
+			</div>
+		</form>
+
+		<div style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+			<p>Need help? <a href="mailto:support@citybeat.app" style="color: #ff6b6b;">Contact Support</a></p>
+			<p>
+				<a href="privacy.html" style="color: #ccc;">Privacy Policy</a> | 
+				<a href="legal.html" style="color: #ccc;">Terms of Service</a>
+			</p>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('deleteAccountForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			
+			const email = document.getElementById('email').value;
+			const confirmation = document.getElementById('confirmation').checked;
+			
+			if (!email) {
+				alert('Please enter your email address.');
+				return;
+			}
+			
+			if (!confirmation) {
+				alert('Please confirm that you understand this action is permanent.');
+				return;
+			}
+			
+			// Show final confirmation dialog
+			const finalConfirm = confirm(
+				'Are you absolutely sure you want to delete your account? This action cannot be undone.\n\n' +
+				'Click OK to proceed with account deletion, or Cancel to go back.'
+			);
+			
+			if (finalConfirm) {
+				// Here you would typically send the data to your server
+				// For now, we'll show a confirmation message
+				alert('Your account deletion request has been submitted. You will receive an email confirmation shortly.');
+				
+				// Optionally redirect to a confirmation page
+				// window.location.href = 'deletion-confirmation.html';
+			}
+		});
+
+		// Auto-resize textarea
+		document.getElementById('feedback').addEventListener('input', function() {
+			this.style.height = 'auto';
+			this.style.height = this.scrollHeight + 'px';
+		});
+	</script>
+</body>
+
+</html>
