@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Delete Personal Data - citybeat</title>
+	<style>
+		@font-face {
+			font-family: Unbounded;
+			font-display: swap;
+			font-style: normal;
+			font-weight: 200 900;
+			src: url(./Unbounded.woff2) format("woff2");
+		}
+
+		@font-face {
+			font-family: 'Josefin Sans';
+			font-style: normal;
+			font-weight: 100 700;
+			font-display: swap;
+			src: url(./JosefinSans.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+		* {
+			font-family: 'Josefin Sans', sans-serif;
+		}
+
+		h1,
+		h2 {
+			font-family: Unbounded, system-ui;
+		}
+
+		h2::before {
+			content: '//';
+		}
+
+		html {
+			color: white;
+			background-color: #1a1414;
+			color-scheme: dark;
+		}
+
+		body {
+			margin: 0;
+			line-height: 1.6;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 2rem;
+		}
+
+		.header {
+			text-align: center;
+			margin-bottom: 3rem;
+		}
+
+		.header h1 {
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+			color: #ff9f40;
+		}
+
+		.header p {
+			font-size: 1.2rem;
+			color: #ccc;
+		}
+
+		.form-section {
+			background-color: #2a2a2a;
+			padding: 2rem;
+			border-radius: 10px;
+			margin-bottom: 2rem;
+			border: 1px solid #444;
+		}
+
+		.form-group {
+			margin-bottom: 1.5rem;
+		}
+
+		.form-group label {
+			display: block;
+			margin-bottom: 0.5rem;
+			font-weight: 600;
+			color: #fff;
+		}
+
+		.form-group input,
+		.form-group select,
+		.form-group textarea {
+			width: 100%;
+			padding: 0.75rem;
+			border: 2px solid #444;
+			border-radius: 5px;
+			background-color: #1a1414;
+			color: white;
+			font-size: 1rem;
+			box-sizing: border-box;
+		}
+
+		.form-group input:focus,
+		.form-group select:focus,
+		.form-group textarea:focus {
+			outline: none;
+			border-color: #ff9f40;
+		}
+
+		.form-group textarea {
+			min-height: 100px;
+			resize: vertical;
+		}
+
+		.info-box {
+			background-color: #1a3326;
+			border: 2px solid #ff9f40;
+			border-radius: 10px;
+			padding: 1.5rem;
+			margin-bottom: 2rem;
+		}
+
+		.info-box h3 {
+			margin-top: 0;
+			color: #ff9f40;
+			font-family: Unbounded, system-ui;
+		}
+
+		.info-box ul {
+			margin: 1rem 0;
+		}
+
+		.info-box li {
+			margin-bottom: 0.5rem;
+		}
+
+		.checkbox-group {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.75rem;
+			margin: 1.5rem 0;
+		}
+
+		.checkbox-group input[type="checkbox"] {
+			width: auto;
+			margin-top: 0.25rem;
+		}
+
+		.checkbox-group label {
+			flex: 1;
+			margin-bottom: 0;
+		}
+
+		.data-types {
+			background-color: #333;
+			padding: 1rem;
+			border-radius: 5px;
+			margin: 1rem 0;
+		}
+
+		.data-types h4 {
+			margin-top: 0;
+			color: #ff9f40;
+		}
+
+		.data-types .checkbox-group {
+			margin: 0.5rem 0;
+		}
+
+		.button-group {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+			margin-top: 2rem;
+		}
+
+		.btn {
+			padding: 0.75rem 2rem;
+			border: none;
+			border-radius: 5px;
+			font-size: 1rem;
+			font-weight: 600;
+			cursor: pointer;
+			text-decoration: none;
+			display: inline-block;
+			text-align: center;
+			transition: all 0.3s ease;
+		}
+
+		.btn-warning {
+			background-color: #ff9f40;
+			color: #1a1414;
+		}
+
+		.btn-warning:hover {
+			background-color: #ff8c00;
+		}
+
+		.btn-secondary {
+			background-color: #666;
+			color: white;
+		}
+
+		.btn-secondary:hover {
+			background-color: #777;
+		}
+
+		.back-link {
+			display: inline-block;
+			margin-bottom: 2rem;
+			color: #ccc;
+			text-decoration: none;
+		}
+
+		.back-link:hover {
+			color: white;
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.container {
+				padding: 1rem;
+			}
+
+			.header h1 {
+				font-size: 2rem;
+			}
+
+			.button-group {
+				flex-direction: column;
+			}
+
+			.btn {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<a href="index.html" class="back-link">← Back to citybeat</a>
+		
+		<div class="header">
+			<h1>Delete Personal Data</h1>
+			<p>Request the deletion of specific personal data while keeping your account active.</p>
+		</div>
+
+		<div class="info-box">
+			<h3>📋 Data Deletion Information</h3>
+			<p>You can request the deletion of specific types of personal data while maintaining your citybeat account. This allows you to:</p>
+			<ul>
+				<li>Keep your account active and continue using the app</li>
+				<li>Remove specific data categories you no longer want stored</li>
+				<li>Maintain your connections and essential account information</li>
+				<li>Continue accessing citybeat services</li>
+			</ul>
+			<p><strong>Note:</strong> Some data may be retained for legal, security, or operational reasons as outlined in our Privacy Policy.</p>
+		</div>
+
+		<form id="deleteDataForm" class="form-section">
+			<h2>Data Deletion Request</h2>
+			
+			<div class="form-group">
+				<label for="email">Email Address</label>
+				<input type="email" id="email" name="email" required 
+					   placeholder="Enter the email associated with your account">
+			</div>
+
+			<div class="form-group">
+				<label for="username">Username (if applicable)</label>
+				<input type="text" id="username" name="username" 
+					   placeholder="Enter your username">
+			</div>
+
+			<div class="data-types">
+				<h4>Select Data Types to Delete:</h4>
+				
+				<div class="checkbox-group">
+					<input type="checkbox" id="locationData" name="dataTypes" value="location">
+					<label for="locationData">
+						<strong>Location Data</strong> - Check-ins, visited places, and location history
+					</label>
+				</div>
+
+				<div class="checkbox-group">
+					<input type="checkbox" id="eventData" name="dataTypes" value="events">
+					<label for="eventData">
+						<strong>Event History</strong> - Events attended, event preferences, and related data
+					</label>
+				</div>
+
+				<div class="checkbox-group">
+					<input type="checkbox" id="socialData" name="dataTypes" value="social">
+					<label for="socialData">
+						<strong>Social Interactions</strong> - Comments, reviews, and social activity (except friend connections)
+					</label>
+				</div>
+
+				<div class="checkbox-group">
+					<input type="checkbox" id="searchData" name="dataTypes" value="search">
+					<label for="searchData">
+						<strong>Search History</strong> - Your search queries and browsing history within the app
+					</label>
+				</div>
+
+				<div class="checkbox-group">
+					<input type="checkbox" id="preferencesData" name="dataTypes" value="preferences">
+					<label for="preferencesData">
+						<strong>Preferences & Settings</strong> - Customized settings and app preferences
+					</label>
+				</div>
+
+				<div class="checkbox-group">
+					<input type="checkbox" id="analyticsData" name="dataTypes" value="analytics">
+					<label for="analyticsData">
+						<strong>Analytics Data</strong> - Usage statistics and behavioral data
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="reason">Reason for Data Deletion (Optional)</label>
+				<select id="reason" name="reason">
+					<option value="">Select a reason...</option>
+					<option value="privacy">Privacy concerns</option>
+					<option value="data-minimization">Data minimization</option>
+					<option value="no-longer-needed">Data no longer needed</option>
+					<option value="accuracy-issues">Data accuracy issues</option>
+					<option value="legal-request">Legal request</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="additional-info">Additional Information (Optional)</label>
+				<textarea id="additional-info" name="additional-info" 
+						  placeholder="Provide any additional details about your data deletion request..."></textarea>
+			</div>
+
+			<div class="checkbox-group">
+				<input type="checkbox" id="dataExport" name="dataExport">
+				<label for="dataExport">
+					I would like to receive a copy of the data before deletion 
+					(this may delay the deletion process by up to 30 days)
+				</label>
+			</div>
+
+			<div class="checkbox-group">
+				<input type="checkbox" id="confirmation" name="confirmation" required>
+				<label for="confirmation">
+					<strong>I understand that this data deletion is permanent and the selected data cannot be recovered. 
+					I want to proceed with deleting the selected personal data from my citybeat account.</strong>
+				</label>
+			</div>
+
+			<div class="button-group">
+				<a href="index.html" class="btn btn-secondary">Cancel</a>
+				<button type="submit" class="btn btn-warning">Submit Data Deletion Request</button>
+			</div>
+		</form>
+
+		<div style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+			<p>Need help? <a href="mailto:support@citybeat.app" style="color: #ff9f40;">Contact Support</a></p>
+			<p>
+				<a href="privacy.html" style="color: #ccc;">Privacy Policy</a> | 
+				<a href="legal.html" style="color: #ccc;">Terms of Service</a> |
+				<a href="delete-account.html" style="color: #ff6b6b;">Delete Account Instead</a>
+			</p>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('deleteDataForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			
+			const email = document.getElementById('email').value;
+			const confirmation = document.getElementById('confirmation').checked;
+			const selectedDataTypes = document.querySelectorAll('input[name="dataTypes"]:checked');
+			
+			if (!email) {
+				alert('Please enter your email address.');
+				return;
+			}
+			
+			if (selectedDataTypes.length === 0) {
+				alert('Please select at least one type of data to delete.');
+				return;
+			}
+			
+			if (!confirmation) {
+				alert('Please confirm that you understand this action is permanent.');
+				return;
+			}
+			
+			// Build list of selected data types for confirmation
+			const dataTypeNames = Array.from(selectedDataTypes).map(cb => {
+				const label = document.querySelector(`label[for="${cb.id}"]`);
+				return label.textContent.split(' - ')[0];
+			});
+			
+			// Show final confirmation dialog
+			const finalConfirm = confirm(
+				'Are you sure you want to delete the following data types?\n\n' +
+				dataTypeNames.join('\n') + '\n\n' +
+				'This action cannot be undone. Click OK to proceed with data deletion, or Cancel to go back.'
+			);
+			
+			if (finalConfirm) {
+				// Here you would typically send the data to your server
+				// For now, we'll show a confirmation message
+				alert('Your data deletion request has been submitted. You will receive an email confirmation shortly with details about the processing timeline.');
+				
+				// Optionally redirect to a confirmation page
+				// window.location.href = 'data-deletion-confirmation.html';
+			}
+		});
+
+		// Auto-resize textarea
+		document.getElementById('additional-info').addEventListener('input', function() {
+			this.style.height = 'auto';
+			this.style.height = this.scrollHeight + 'px';
+		});
+	</script>
+</body>
+
+</html>
