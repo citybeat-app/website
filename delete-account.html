@@ -225,7 +225,7 @@
 <body>
 	<div class="container">
 		<a href="index.html" class="back-link">← Back to citybeat</a>
-		
+
 		<div class="header">
 			<h1>Delete Your Account</h1>
 			<p>We're sorry to see you go. Please take a moment to review the information below.</p>
@@ -244,19 +244,18 @@
 			<p><strong>This action cannot be undone.</strong></p>
 		</div>
 
-		<form id="deleteAccountForm" class="form-section">
+		<form id="deleteAccountForm" class="form-section" action="https://formspree.io/f/xrbaqozn">
 			<h2>Account Deletion Request</h2>
-			
+
 			<div class="form-group">
 				<label for="email">Email Address</label>
-				<input type="email" id="email" name="email" required 
-					   placeholder="Enter the email associated with your account">
+				<input type="email" id="email" name="email" required
+					placeholder="Enter the email associated with your account">
 			</div>
 
 			<div class="form-group">
 				<label for="username">Username (if applicable)</label>
-				<input type="text" id="username" name="username" 
-					   placeholder="Enter your username">
+				<input type="text" id="username" name="username" placeholder="Enter your username">
 			</div>
 
 			<div class="form-group">
@@ -274,14 +273,14 @@
 
 			<div class="form-group">
 				<label for="feedback">Additional Feedback (Optional)</label>
-				<textarea id="feedback" name="feedback" 
-						  placeholder="Help us improve by sharing your experience..."></textarea>
+				<textarea id="feedback" name="feedback"
+					placeholder="Help us improve by sharing your experience..."></textarea>
 			</div>
 
 			<div class="checkbox-group">
 				<input type="checkbox" id="dataExport" name="dataExport">
 				<label for="dataExport">
-					I would like to request a copy of my data before deletion 
+					I would like to request a copy of my data before deletion
 					(this may delay the deletion process by up to 30 days)
 				</label>
 			</div>
@@ -289,8 +288,8 @@
 			<div class="checkbox-group">
 				<input type="checkbox" id="confirmation" name="confirmation" required>
 				<label for="confirmation">
-					<strong>I understand that this action is permanent and irreversible. 
-					I want to permanently delete my citybeat account and all associated data.</strong>
+					<strong>I understand that this action is permanent and irreversible.
+						I want to permanently delete my citybeat account and all associated data.</strong>
 				</label>
 			</div>
 
@@ -303,47 +302,47 @@
 		<div style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
 			<p>Need help? <a href="mailto:support@citybeat.app" style="color: #ff6b6b;">Contact Support</a></p>
 			<p>
-				<a href="privacy.html" style="color: #ccc;">Privacy Policy</a> | 
+				<a href="privacy.html" style="color: #ccc;">Privacy Policy</a> |
 				<a href="legal.html" style="color: #ccc;">Terms of Service</a>
 			</p>
 		</div>
 	</div>
 
 	<script>
-		document.getElementById('deleteAccountForm').addEventListener('submit', function(e) {
+		document.getElementById('deleteAccountForm').addEventListener('submit', function (e) {
 			e.preventDefault();
-			
+
 			const email = document.getElementById('email').value;
 			const confirmation = document.getElementById('confirmation').checked;
-			
+
 			if (!email) {
 				alert('Please enter your email address.');
 				return;
 			}
-			
+
 			if (!confirmation) {
 				alert('Please confirm that you understand this action is permanent.');
 				return;
 			}
-			
+
 			// Show final confirmation dialog
 			const finalConfirm = confirm(
 				'Are you absolutely sure you want to delete your account? This action cannot be undone.\n\n' +
 				'Click OK to proceed with account deletion, or Cancel to go back.'
 			);
-			
+
 			if (finalConfirm) {
 				// Here you would typically send the data to your server
 				// For now, we'll show a confirmation message
 				alert('Your account deletion request has been submitted. You will receive an email confirmation shortly.');
-				
+
 				// Optionally redirect to a confirmation page
 				// window.location.href = 'deletion-confirmation.html';
 			}
 		});
 
 		// Auto-resize textarea
-		document.getElementById('feedback').addEventListener('input', function() {
+		document.getElementById('feedback').addEventListener('input', function () {
 			this.style.height = 'auto';
 			this.style.height = this.scrollHeight + 'px';
 		});
