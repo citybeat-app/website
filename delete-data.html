@@ -261,7 +261,7 @@
 				in our Privacy Policy.</p>
 		</div>
 
-		<form id="deleteDataForm" class="form-section" action="https://formspree.io/f/mblaopjr">
+		<form id="deleteDataForm" class="form-section" action="https://citybeat.app/api/requests">
 			<h2>Data Deletion Request</h2>
 
 			<div class="form-group">
@@ -336,8 +336,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="additional-info">Additional Information (Optional)</label>
-				<textarea id="additional-info" name="additional-info"
+				<label for="additionalInfo">Additional Information (Optional)</label>
+				<textarea id="additionalInfo" name="additionalInfo"
 					placeholder="Provide any additional details about your data deletion request..."></textarea>
 			</div>
 
@@ -377,9 +377,11 @@
 		document.getElementById('deleteDataForm').addEventListener('submit', function (e) {
 			e.preventDefault();
 
-			const email = document.getElementById('email').value;
-			const confirmation = document.getElementById('confirmation').checked;
-			const selectedDataTypes = document.querySelectorAll('input[name="dataTypes"]:checked');
+			const formData = new FormData(this);
+
+			const email = formData.get('email');
+			const confirmation = Boolean(formData.get('confirmation'));
+			const selectedDataTypes = formData.getAll('dataTypes');
 
 			if (!email) {
 				alert('Please enter your email address.');
@@ -397,9 +399,9 @@
 			}
 
 			// Build list of selected data types for confirmation
-			const dataTypeNames = Array.from(selectedDataTypes).map(cb => {
+			const dataTypeNames = Array.from(document.querySelectorAll('input[name="dataTypes"]:checked')).map(cb => {
 				const label = document.querySelector(`label[for="${cb.id}"]`);
-				return label.textContent.split(' - ')[0];
+				return label.innerText.split(' - ')[0];
 			});
 
 			// Show final confirmation dialog
@@ -409,18 +411,32 @@
 				'This action cannot be undone. Click OK to proceed with data deletion, or Cancel to go back.'
 			);
 
-			if (finalConfirm) {
-				// Here you would typically send the data to your server
-				// For now, we'll show a confirmation message
-				alert('Your data deletion request has been submitted. You will receive an email confirmation shortly with details about the processing timeline.');
+			if (!finalConfirm) return;
 
-				// Optionally redirect to a confirmation page
-				// window.location.href = 'data-deletion-confirmation.html';
-			}
+			fetch(this.action, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					...Object.fromEntries(formData.entries()),
+					dataTypes: selectedDataTypes,
+					dataExport: Boolean(formData.get('dataExport')),
+				})
+			}).then(response => {
+				if (response.ok) {
+					alert('Your data deletion request has been submitted. You will receive an email confirmation shortly with details about the processing timeline.');
+				} else {
+					alert('There was an error submitting your request. Please try again later.');
+				}
+			}).catch(error => {
+				console.error('Error:', error);
+				alert('There was an error submitting your request. Please try again later.');
+			});
 		});
 
 		// Auto-resize textarea
-		document.getElementById('additional-info').addEventListener('input', function () {
+		document.getElementById('additionalInfo').addEventListener('input', function () {
 			this.style.height = 'auto';
 			this.style.height = this.scrollHeight + 'px';
 		});

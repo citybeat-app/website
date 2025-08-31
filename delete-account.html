@@ -312,8 +312,10 @@
 		document.getElementById('deleteAccountForm').addEventListener('submit', function (e) {
 			e.preventDefault();
 
-			const email = document.getElementById('email').value;
-			const confirmation = document.getElementById('confirmation').checked;
+			const formData = new FormData(this);
+
+			const email = formData.get("email");
+			const confirmation = Boolean(formData.get('confirmation'));
 
 			if (!email) {
 				alert('Please enter your email address.');
@@ -331,14 +333,24 @@
 				'Click OK to proceed with account deletion, or Cancel to go back.'
 			);
 
-			if (finalConfirm) {
-				// Here you would typically send the data to your server
-				// For now, we'll show a confirmation message
-				alert('Your account deletion request has been submitted. You will receive an email confirmation shortly.');
+			if (!finalConfirm) return;
 
-				// Optionally redirect to a confirmation page
-				// window.location.href = 'deletion-confirmation.html';
-			}
+			fetch(this.action, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(Object.fromEntries(formData.entries())),
+			}).then(response => {
+				if (response.ok) {
+					alert('Your account deletion request has been submitted. You will receive an email confirmation shortly.');
+				} else {
+					alert('There was an error submitting your request. Please try again later.');
+				}
+			}).catch(error => {
+				console.error('Error:', error);
+				alert('There was an error submitting your request. Please try again later.');
+			});
 		});
 
 		// Auto-resize textarea
