@@ -27,21 +27,124 @@
 
         html {
             color: white;
-            background-color: #1a1414;
+            background: linear-gradient(135deg, #1a1414 0%, #2a1d1d 50%, #1a1414 100%);
+            min-height: 100vh;
             color-scheme: dark;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .logo {
+            animation: fadeInUp 0.8s ease-out;
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+        }
+
+        .title {
+            font-family: Unbounded, system-ui;
+            margin: 1rem 0 2.5rem 0;
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .app-store-btn {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .app-store-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+        }
+
+        .google-play-btn {
+            filter: saturate(0) contrast(15%);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .coming-soon {
+            font-size: 14px;
+            font-family: 'Josefin Sans', sans-serif;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 100px;
+            }
+            
+            .app-store-btn img {
+                width: 220px;
+            }
+            
+            .google-play-btn {
+                width: 220px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10vh">
-        <img src="/logo.svg" alt="Logo" height="140">
-        <h1 style="font-family: Unbounded, system-ui; margin-top: 0.5rem; margin-bottom: 2rem;">citybeat</h1>
-        <a href="https://apps.apple.com/it/app/citybeat/id6748416097">
-            <img src="Download_on_the_App_Store_Badge_IT_RGB_blk_100317.svg" alt="Scarica sull'App Store" width="270">
-        </a>
-        <img src="GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" style="margin-top: 1rem; filter: saturate(0) contrast(15%)">
-        <div style="font-size: 14px; font-family: 'Josefin Sans', sans-serif; margin-top: 0.5rem;">soon available on Android too!</div>
+    <div class="container">
+        <img src="/logo.svg" alt="Logo" height="140" class="logo">
+        <h1 class="title">citybeat</h1>
+        <div class="download-buttons">
+            <a href="https://apps.apple.com/it/app/citybeat/id6748416097" class="app-store-btn">
+                <img src="Download_on_the_App_Store_Badge_IT_RGB_blk_100317.svg" alt="Scarica sull'App Store" width="270">
+            </a>
+            <img src="GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" class="google-play-btn">
+            <div class="coming-soon">soon available on Android too!</div>
+        </div>
     </div>
 </body>
 
