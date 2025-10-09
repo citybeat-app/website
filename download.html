@@ -17,13 +17,13 @@
         }
 
         @font-face {
-			font-family: 'Josefin Sans';
-			font-style: normal;
-			font-weight: 100 700;
-			font-display: swap;
-			src: url(./JosefinSans.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-		}
+            font-family: 'Josefin Sans';
+            font-style: normal;
+            font-weight: 100 700;
+            font-display: swap;
+            src: url(./JosefinSans.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
 
         html {
             color: white;
@@ -85,17 +85,14 @@
         }
 
         .google-play-btn {
-            filter: saturate(0) contrast(15%);
             transition: all 0.3s ease;
             border-radius: 8px;
         }
 
-        .coming-soon {
-            font-size: 14px;
-            font-family: 'Josefin Sans', sans-serif;
-            margin-top: 0.5rem;
-            opacity: 0.8;
-            animation: fadeIn 1s ease-out 0.6s both;
+        .google-play-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
         }
 
         @keyframes fadeInUp {
@@ -103,6 +100,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -113,6 +111,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -122,17 +121,17 @@
             .logo {
                 height: 100px;
             }
-            
+
             .app-store-btn img {
                 width: 220px;
             }
-            
+
             .google-play-btn {
                 width: 220px;
             }
         }
     </style>
-    <script type="module">fetch("https://citybeat.app/api/download")</script>
+    <script type="module">fetch(`https://citybeat.app/api/download?${new URLSearchParams({ referrer: document.referrer }).toString()}`)</script>
 </head>
 
 <body>
@@ -143,8 +142,9 @@
             <a href="https://apps.apple.com/it/app/citybeat/id6748416097" class="app-store-btn">
                 <img src="Download_on_the_App_Store_Badge_IT_RGB_blk_100317.svg" alt="Scarica sull'App Store" width="270">
             </a>
-            <img src="GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" class="google-play-btn">
-            <div class="coming-soon">soon available on Android too!</div>
+            <a href="https://play.google.com/store/apps/details?id=app.citybeat" class="google-play-btn">
+                <img src="GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play">
+            </a>
         </div>
     </div>
 </body>
